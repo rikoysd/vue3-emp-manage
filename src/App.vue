@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import ListStore from './store/listStore.vue'
 </script>
 
 <template>
@@ -7,13 +8,14 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="wrapper">
 
       <nav>
-        <RouterLink to="/registerAdmin">RegisterAdmin</RouterLink>|
+        <RouterLink to="/registerAdmin">RegisterAdmin</RouterLink>
         <RouterLink to="/login">Login</RouterLink>
+        <RouterLink to="/employeeList">EmployeeList</RouterLink>
       </nav>
     </div>
   </header>
 
-  <RouterView />
+  <ListStore><RouterView /></ListStore>
 </template>
 
 <style>
