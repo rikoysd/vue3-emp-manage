@@ -1,7 +1,7 @@
 <template>
   <div class="top-wrapper">
     <div class="container">
-      <div>従業員数:10人</div>
+      <div>従業員数:{{ employeeCount }}人</div>
       <div class="row">
         <table class="striped">
           <thead>
@@ -24,6 +24,12 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+
+const employeeCount = ref(0);
+
+
+</script>
 
 <style scoped></style>
