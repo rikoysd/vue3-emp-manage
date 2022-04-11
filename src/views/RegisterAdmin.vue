@@ -94,23 +94,5 @@ const register = async () => {
 </script>
 
 <style scoped>
-.margin {
-  margin-top: 40px;
-}
-
-.position {
-  display: flex;
-  justify-content: center;
-}
-
-.msg {
-  display: flex;
-  justify-content: center;
-  font-size: 13px;
-  color: red;
-}
-
-input {
-  margin-bottom: 20px;
-}
+@import '@/assets/form.css';
 </style>
