@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/registerAdmin">RegisterAdmin</RouterLink>
       </nav>
     </div>
   </header>
@@ -96,9 +93,6 @@ nav a:first-of-type {
     flex-wrap: wrap;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
 
   nav {
     text-align: left;
