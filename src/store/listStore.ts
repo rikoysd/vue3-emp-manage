@@ -43,19 +43,14 @@ export const listStore = () => {
     console.log(employees.value);
 
     globalState.count = response.data.totalEmployeeCount;
-    console.log(globalState.count);
   };
 
-  const setCount = () => {
-    globalState.count;
+  return {
+    ...toRefs(globalState),
+    employees,
+    employeeList,
   };
-
-  const setList = () => {
-    employees.value;
-  };
-
-  return { ...toRefs(globalState), employeeList, setCount, setList, employees };
 };
 
 type storeType = ReturnType<typeof listStore>;
-export const listKey: InjectionKey<storeType> = Symbol("listStore");
+export const listKey: InjectionKey<storeType> = Symbol("store");

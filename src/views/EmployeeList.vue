@@ -1,7 +1,7 @@
 <template>
   <div class="top-wrapper">
     <div class="container">
-      <div>従業員数:{{ employeeCount }}人</div>
+      <div>従業員数:{{ store.count }}人</div>
       <div class="row">
         <table class="striped">
           <thead>
@@ -12,10 +12,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><a href="employeeDetail.html">山田太郎</a></td>
-              <td>2000/1/1</td>
-              <td>3人</td>
+            <tr v-for="employee of store.employees.value">
+              <td>
+                <RouterLink to="/employeeDetail">{{
+                  employee.name
+                }}</RouterLink>
+              </td>
+              <td>{{ employee.hireDate }}</td>
+              <td>{{ employee.dependentsCount }}人</td>
             </tr>
           </tbody>
         </table>
@@ -25,11 +29,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { listKey } from "@/store/listStore";
+import { inject, onMounted } from "vue";
+import { RouterLink } from "vue-router";
 
-const employeeCount = ref(0);
+const store = inject(listKey);
 
+if (!store) {
+  throw new Error("");
+}
 
+onMounted(() => {
+  store.employeeList();
+});
 </script>
 
 <style scoped></style>
