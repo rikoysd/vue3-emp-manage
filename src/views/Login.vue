@@ -1,16 +1,5 @@
 <template>
-  <div class="msg">{{ errorMessage }}</div>
-  <div class="msg margin">{{ nameError }}</div>
-  <div class="position">
-    <div>
-      <label for="lastName">姓</label>
-      <input type="text" id="lastName" v-model="lastName" />
-    </div>
-    <div>
-      <label for="firstName">名</label>
-      <input type="text" id="firstName" v-model="firstName" />
-    </div>
-  </div>
+  <div class="msg margin">{{ errorMessage }}</div>
   <div class="msg">{{ mailError }}</div>
   <div class="position">
     <label for="mail">メールアドレス</label>
@@ -22,39 +11,30 @@
     <input type="text" id="password" v-model="password" />
   </div>
   <div class="position">
-    <button type="button" @click="register">登録</button>
+    <button class="login-btn" type="button" @click="login">ログイン</button>
+  </div>
+  <div class="position">
+    <RouterLink to="/registerAdmin">管理者登録はこちら</RouterLink>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import axios from "axios";
-import { useRouter } from "vue-router";
+import { ref } from "vue";
+import { RouterLink, useRouter } from "vue-router";
 
-const lastName = ref("");
-const firstName = ref("");
 const mail = ref("");
 const password = ref("");
 
 const errorMessage = ref("");
-const nameError = ref("");
 const mailError = ref("");
 const passwordError = ref("");
 const errorCheck = ref(true);
 
-// useRouter() ... this.$routerと同じ意味
 const router = useRouter();
 
-const register = async () => {
+const login = async () => {
   // エラー処理
-  if (lastName.value === "" || firstName.value === "") {
-    nameError.value = "姓または名が入力されていません";
-    errorCheck.value = false;
-  } else {
-    nameError.value = "";
-    errorCheck.value = true;
-  }
-
   if (mail.value === "") {
     mailError.value = "メールアドレスが入力されていません";
     errorCheck.value = false;
@@ -75,24 +55,26 @@ const register = async () => {
     return;
   }
 
-  // データの送信
   const response = await axios.post(
-    "http://153.127.48.168:8080/ex-emp-api/insert",
+    "http://153.127.48.168:8080/ex-emp-api/login",
     {
-      name: lastName.value + firstName.value,
       mail: mail.value,
       password: password.value,
     }
   );
   console.log("response", JSON.stringify(response));
+
   if (response.data.status !== "success") {
-    errorMessage.value = "登録に失敗しました";
+    errorMessage.value = "メールアドレスまたはパスワードが間違っています";
   }
-  // ログインページに遷移する
-  router.push("/login");
+  router.push("/employeeList");
 };
 </script>
 
 <style scoped>
-@import '@/assets/form.css';
+@import "@/assets/form.css";
+
+.login-btn {
+  margin-bottom: 8px;
+}
 </style>
