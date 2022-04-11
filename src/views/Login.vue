@@ -8,7 +8,7 @@
   <div class="msg">{{ passwordError }}</div>
   <div class="position">
     <label for="password">パスワード</label>
-    <input type="text" id="password" v-model="password" />
+    <input type="password" id="password" v-model="password" />
   </div>
   <div class="position">
     <button class="login-btn" type="button" @click="login">ログイン</button>
@@ -66,6 +66,7 @@ const login = async () => {
 
   if (response.data.status !== "success") {
     errorMessage.value = "メールアドレスまたはパスワードが間違っています";
+    return;
   }
   router.push("/employeeList");
 };

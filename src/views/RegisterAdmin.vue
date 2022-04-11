@@ -19,7 +19,7 @@
   <div class="msg">{{ passwordError }}</div>
   <div class="position">
     <label for="password">パスワード</label>
-    <input type="text" id="password" v-model="password" />
+    <input type="password" id="password" v-model="password" />
   </div>
   <div class="position">
     <button type="button" @click="register">登録</button>
@@ -87,6 +87,7 @@ const register = async () => {
   console.log("response", JSON.stringify(response));
   if (response.data.status !== "success") {
     errorMessage.value = "登録に失敗しました";
+    return;
   }
   // ログインページに遷移する
   router.push("/login");
@@ -94,5 +95,5 @@ const register = async () => {
 </script>
 
 <style scoped>
-@import '@/assets/form.css';
+@import "@/assets/form.css";
 </style>
