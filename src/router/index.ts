@@ -7,6 +7,10 @@ const router = createRouter({
       path: "/registerAdmin",
       component: () => import("../views/RegisterAdmin.vue"),
     },
+    {
+      path: "/login",
+      component: () => import("../views/Login.vue"),
+    },
   ],
 });
 
